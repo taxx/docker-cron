@@ -6,8 +6,25 @@ https://community.home-assistant.io/t/ipmi-sensors/279248/2
 ### Build Docker image
 docker build -t taxx/ipmi_mqtt .
 
-### Initiate the container
-docker run taxx/ipmi_mqtt
+### Run with docker compose
+
+```yaml
+version: '3'
+services:
+  ipmimqtt:
+    image: taxx/ipmi_mqtt
+    container_name: ipmi_mqtt
+    privileged: true
+    devices:
+      - /dev/ipmi0:/dev/ipmi0
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=Europe/Stockholm
+      - MQTT_IP=ip
+      - MQTT_USER=user
+      - MQTT_PW=pass
+```
 
 ### Test the cron output
 
