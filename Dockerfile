@@ -1,7 +1,7 @@
-FROM alpine:latest
+FROM debian:buster-slim
 LABEL maintainer taxx
 
-RUN apk update && apk add ipmitool mosquitto-clients bash
+RUN apt update && apt upgrade -y && apt install -y  ipmitool mosquitto-clients bash cron
 
 ADD run.sh /run.sh
 ADD entrypoint.sh /entrypoint.sh
