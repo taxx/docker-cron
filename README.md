@@ -1,10 +1,13 @@
-## Setting up a cron in docker
+## Running ipmitool and sending values over mqtt 
+
+Based on this post:
+https://community.home-assistant.io/t/ipmi-sensors/279248/2
 
 ### Build Docker image
-docker build -t docker-cron .
+docker build -t taxx/ipmi_mqtt .
 
 ### Initiate the container
-docker run -p 8080:8080 docker-cron
+docker run taxx/ipmi_mqtt
 
 ### Test the cron output
 

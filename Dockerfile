@@ -1,13 +1,11 @@
-FROM ubuntu:16.04
-MAINTAINER Neha Bhardwaj
+FROM alpine:latest
+LABEL maintainer taxx
 
-# Install cron
-RUN apt-get update && apt-get install -y cron
+RUN apk update && apk add ipmitool mosquitto-clients bash
 
-# Add files
 ADD run.sh /run.sh
 ADD entrypoint.sh /entrypoint.sh
- 
+
 RUN chmod +x /run.sh /entrypoint.sh
 
 ENTRYPOINT /entrypoint.sh
