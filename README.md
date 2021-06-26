@@ -22,6 +22,7 @@ services:
       - PGID=${PGID}
       - TZ=Europe/Stockholm
       - MQTT_IP=ip
+      - MQTT_TOPIC=topic
       - MQTT_USER=user
       - MQTT_PW=pass
 ```

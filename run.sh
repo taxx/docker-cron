@@ -2,6 +2,7 @@
 SHELL=/bin/sh PATH=/bin:/sbin:/usr/bin:/usr/sbin
 
 MQTT_IP=$MQTT_IP
+MQTT_TOPIC=$MQTT_TOPIC
 MQTT_USER=$MQTT_USER
 MQTT_PW=$MQTT_PW
 
@@ -91,7 +92,7 @@ for i in $(eval echo "{1..$NUMBER_OF_SENSORS}")
 do
    PAYLOAD=$(ipmitool sdr entity "${SDR[$i]}"|cut -d '|' -f$CUT_COLUMN|awk '{print $1}')
 #   echo $PAYLOAD
-   mosquitto_pub -r -t "${TOPIC[$i]}" -m "$PAYLOAD" -h "$MQTT_IP" -u "$MQTT_USER" -P "$MQTT_PW"
+   mosquitto_pub -r -t "$MQTT_TOPIC/${TOPIC[$i]}" -m "$PAYLOAD" -h "$MQTT_IP" -u "$MQTT_USER" -P "$MQTT_PW"
 ###   mosquitto_pub -r -t "${TOPIC[$i]}" -m "$PAYLOAD" -h "$MQTT_IP"
 done
 
